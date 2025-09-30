@@ -41,7 +41,7 @@ class RepoUsuario
 
   Future<List<Post>> getPostUsuario(String up, int? p) async => servicoApiUsuarioPrivado.listarPostsUsuario(up, p);
 
-  Future<List<Post>> getMeusPosts() async => servicoApiUsuarioPrivado.listarPostsUsuarioLogado();
+  Future<List<Post>> getMeusPosts(int? p) async => servicoApiUsuarioPrivado.listarPostsUsuarioLogado(p);
 
   Future<void> excluirPost(int id) async => servicoApiUsuarioPrivado.excluirPost(id);
 

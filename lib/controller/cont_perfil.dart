@@ -32,6 +32,10 @@ class _ContPerfilState extends State<ContPerfil>
   final RepoUsuario _repositorioUsuarios = RepoUsuario(ApiPrincipal(), ApiAcesso());
   late Future<UsuarioConta> _usuario;
 
+  final GerPostsUsuario _gerPostsUsuario = GerPostsUsuario();
+
+  int _pagina = 0;
+
 
   
   @override
@@ -42,7 +46,29 @@ class _ContPerfilState extends State<ContPerfil>
 
    
   }
+
+  void _paginar(int? p)
+  {
+    setState
+    (
+      () 
+      {
+        _gerPostsUsuario.sortear(p);
+      }
+    );
+  }
    
+  void _atualizar()
+  {
+    setState
+    (
+      () 
+      {
+        _gerPostsUsuario.atualizar();
+      }
+    );
+  }
+
   
   @override
   Widget build(BuildContext context) 
@@ -141,7 +167,48 @@ class _ContPerfilState extends State<ContPerfil>
                 ),
                 Expanded
                 (
-                  child: GerPostsUsuario(),
+                  child: _gerPostsUsuario.build(context),
+                ),
+                Card
+                (
+                  child: Row
+                  (
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: 
+                    [
+                      IconButton
+                      (
+                        icon: Icon(Icons.arrow_back),
+                        onPressed: 
+                        ()
+                        {
+                          _paginar(_pagina--);
+
+                        },
+                      ),
+                      IconButton
+                      (
+                        icon: Icon(Icons.update),
+                        onPressed: 
+                        ()
+                        {
+                          _atualizar();
+
+                        },
+                      ),
+                      IconButton
+                      (
+                        icon: Icon(Icons.arrow_forward),
+                        onPressed: 
+                        ()
+                        {
+                          _paginar(_pagina++);
+
+                        },
+                      ),
+                    ],
+                  ),
                 )
                 
 

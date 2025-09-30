@@ -55,6 +55,8 @@ class _LoginState extends State<Login>
                 child: Column
                 (
                   spacing: 12.0,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children:
                   [
                     TextFormField

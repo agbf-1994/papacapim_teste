@@ -16,12 +16,30 @@ class ApiAcesso
 
     if(token!=null)
     {
+      String url = "";
+      if((p==null) && (s==null))
+      {
+        url = 'https://api.papacapim.just.pro.br/users';
+      }
+      else if(p==null)
+      {
+        url = 'https://api.papacapim.just.pro.br/users?search=$s';
+      }
+      else if(s==null)
+      {
+        url = 'https://api.papacapim.just.pro.br/users?page=$p';
+      }
+      else
+      {
+        url = 'https://api.papacapim.just.pro.br/users?page=$p&search=$s';
+      }
+
       final http.Client cliente = http.Client();
       try
       {
         http.Response? resp = await cliente.get
         (
-          Uri.parse('https://api.papacapim.just.pro.br/users?page=$p&search=$s'),
+          Uri.parse(url),
           headers: {'X-Session-Token': token, 'Content-Type': 'application/json',}
           
         );
@@ -296,12 +314,45 @@ class ApiAcesso
     final token = await getToken();
     if (token != null) 
     {
+      String url = "";
+      if((s==null) && (p==null) && (f==null))
+      {
+        url = 'https://api.papacapim.just.pro.br/posts';
+      }
+      else if((s==null) && (p==null))
+      {
+        url = 'https://api.papacapim.just.pro.br/posts?feed=$f';
+      }
+      else if((s==null) && (f==null))
+      {
+        url = 'https://api.papacapim.just.pro.br/posts?page=$p';
+      }
+      else if((p==null) && (f==null))
+      {
+        url = 'https://api.papacapim.just.pro.br/posts?search=$s';
+      }
+      else if(s==null)
+      {
+        url = 'https://api.papacapim.just.pro.br/posts?page=$p&feed=$f';
+      }
+      else if(p==null)
+      {
+        url = 'https://api.papacapim.just.pro.br/posts?search=$s&feed=$f';
+      }
+      else if(f==null)
+      {
+        url = 'https://api.papacapim.just.pro.br/posts?search=$s&page=$p';
+      }
+      else  
+      {
+        url = 'https://api.papacapim.just.pro.br/posts?search=$s&page=$p&feed=$f';
+      }
       final http.Client cliente = http.Client();
       try 
       {
         http.Response? resp = await cliente.get
         (
-          Uri.parse('https://api.papacapim.just.pro.br/posts?search=$s&page=$p&feed=$f'),
+          Uri.parse(url),
           headers: 
           {
             'X-Session-Token': token,
@@ -340,9 +391,18 @@ class ApiAcesso
       final http.Client cliente = http.Client();
       try 
       {
+        String url = "";
+        if(p==null)
+        {
+          url = 'https://api.papacapim.just.pro.br/users/$u/posts';
+        }
+        else
+        {
+          url = 'https://api.papacapim.just.pro.br/users/$u/posts?page=$p';
+        }
         http.Response? resp = await cliente.get
         (
-          Uri.parse('https://api.papacapim.just.pro.br/users/$u/posts?page=$p'),
+          Uri.parse(url),
           headers: 
           {
             'X-Session-Token': token,
@@ -373,7 +433,7 @@ class ApiAcesso
     }
   }
 
-  Future<List<Post>> listarPostsUsuarioLogado() async 
+  Future<List<Post>> listarPostsUsuarioLogado(int? p) async 
   {
     final token = await getToken();
     final us = await getUsername();
@@ -382,9 +442,18 @@ class ApiAcesso
       final http.Client cliente = http.Client();
       try 
       {
+        String? url = "";
+        if(p==null)
+        {
+          url = 'https://api.papacapim.just.pro.br/users/$us/posts';
+        }
+        else 
+        {
+          url = 'https://api.papacapim.just.pro.br/users/$us/posts?page=$p';
+        }
         http.Response? resp = await cliente.get
         (
-          Uri.parse('https://api.papacapim.just.pro.br/users/$us/posts'),
+          Uri.parse(url),
           headers: 
           {
             'X-Session-Token': token,
@@ -726,6 +795,7 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
+          
                    
         }
         catch(e)
@@ -737,7 +807,11 @@ class ApiAcesso
 
   }
 
-   Future<void> apagarSessaoAtual() async
+
+  //Essa função sempre retorna 404, já que
+  //ele pede o código da sessão, e não '1',
+  //como a própria URL informa
+  Future<void> apagarSessaoAtual() async
   {
     final token = await getToken();
     if(token!=null)
@@ -754,7 +828,7 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
-          print(resp.statusCode);         
+          //print(resp.statusCode);         
         }
         catch(e)
         {

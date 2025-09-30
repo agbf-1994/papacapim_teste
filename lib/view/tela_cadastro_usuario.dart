@@ -68,6 +68,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario>
       ),
       body: Container
       (
+        
         padding: EdgeInsets.all(8.0),
 
         child: Form
@@ -75,108 +76,109 @@ class _CadastroUsuarioState extends State<CadastroUsuario>
           key: _cadastroUsuarioKey,
           child: Column
           (
-          spacing: 12.0,
-          children: 
-          [
-            TextFormField
-            (
-              controller: _usuarioCadController,
-              decoration: const InputDecoration
-              (
-                labelText: "Usuário: ",
-                border: OutlineInputBorder(),
-              ),
-              validator: (valor)
-              {
-                if(valor == null || valor.isEmpty)
-                {
-                  return 'Favor digitar o seu nome de usuário!';
-                }
-                return null;
-              },
-            ),
-            TextFormField
-            (
-              controller: _nomeCadController,
-              decoration: const InputDecoration
-              (
-                labelText: "Nome completo: ",
-                border: OutlineInputBorder(),
-              ),
-                    
-              validator: (valor)
-              {
-                if(valor == null || valor.isEmpty)
-                {
-                  return 'Favor digitar o seu nomecompleto!';
-                }
-                return null;
-              },
-            ),
-            TextFormField
-            (
-              controller: _senhaCadController,
-              decoration: const InputDecoration
-              (
-                labelText: "Senha: ",
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
-              validator: (valor)
-              {
-                if(valor == null || valor.isEmpty)
-                {
-                  return 'Favor digitar a sua senha!';
-                }
-                return null;
-              },
-            ),
-            TextFormField
-            (
-              decoration: const InputDecoration
-              (
-                labelText: "Confirme a sua senha: ",
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
-              validator: (valor)
-              {
-                if(valor == null || valor.isEmpty)
-                {
-                  return 'Favor confirmar a sua senha!';
-                }
-                return null;
-              },
-              onSaved: (valor) => setState
-              (
-                () => _cs = valor
-              ),
-            ),
-            const SizedBox(height: 10),
             
-            if(_infoCadastro!=null)
-              Padding
+            spacing: 12.0,
+            children: 
+            [
+              TextFormField
               (
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(_infoCadastro!),
-              ),
-
-            ElevatedButton
-            (
-              onPressed: () 
-              {
-                if(_cadastroUsuarioKey.currentState!.validate())
+                controller: _usuarioCadController,
+                decoration: const InputDecoration
+                (
+                  labelText: "Usuário: ",
+                  border: OutlineInputBorder(),
+                ),
+                validator: (valor)
                 {
-                  _cadastroUsuarioKey.currentState!.save();
-                  cadastrar(_usuarioCadController.text, _nomeCadController.text, _senhaCadController.text, _cs!);
+                  if(valor == null || valor.isEmpty)
+                  {
+                    return 'Favor digitar o seu nome de usuário!';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField
+              (
+                controller: _nomeCadController,
+                decoration: const InputDecoration
+                (
+                  labelText: "Nome completo: ",
+                  border: OutlineInputBorder(),
+                ),
+                      
+                validator: (valor)
+                {
+                  if(valor == null || valor.isEmpty)
+                  {
+                    return 'Favor digitar o seu nomecompleto!';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField
+              (
+                controller: _senhaCadController,
+                decoration: const InputDecoration
+                (
+                  labelText: "Senha: ",
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+                validator: (valor)
+                {
+                  if(valor == null || valor.isEmpty)
+                  {
+                    return 'Favor digitar a sua senha!';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField
+              (
+                decoration: const InputDecoration
+                (
+                  labelText: "Confirme a sua senha: ",
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+                validator: (valor)
+                {
+                  if(valor == null || valor.isEmpty)
+                  {
+                    return 'Favor confirmar a sua senha!';
+                  }
+                  return null;
+                },
+                onSaved: (valor) => setState
+                (
+                  () => _cs = valor
+                ),
+              ),
+              const SizedBox(height: 10),
+              
+              if(_infoCadastro!=null)
+                Padding
+                (
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(_infoCadastro!),
+                ),
 
-                }
-                
-              },
-                
-              child: Text('Cadastrar'),
-            ),
-          ],
+              ElevatedButton
+              (
+                onPressed: () 
+                {
+                  if(_cadastroUsuarioKey.currentState!.validate())
+                  {
+                    _cadastroUsuarioKey.currentState!.save();
+                    cadastrar(_usuarioCadController.text, _nomeCadController.text, _senhaCadController.text, _cs!);
+
+                  }
+                  
+                },
+                  
+                child: Text('Cadastrar'),
+              ),
+            ],
           )
         ),
       )

@@ -21,13 +21,17 @@ class Sobre extends StatelessWidget
         padding: const EdgeInsets.all(8.0),
         child: Center
         (
+          
           child: Column
           (
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             spacing: 16.0,
             children: 
             [
               const Text('(c)2025 Equipe do Papacapim. Todos os direitos reservados.'),
-              const Text('Versão 0.02r24092925'),
+              const Text('Versão 0.02r30092925'),
+              const Text('Produzido por: Alvaro Gabriel')
             ]
           )
         )

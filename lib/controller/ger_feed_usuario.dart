@@ -15,12 +15,17 @@ class GerFeedUsuario extends ChangeNotifier
   final RepoUsuario _repositorioPosts = RepoUsuario(ApiPrincipal(), ApiAcesso());
   late Future<List<Post>> _posts = _repositorioPosts.getPosts("", 0, 0);
 
-  void sortear(String s, int p, int f)
+  void sortear(String? s, int? p, int? f)
   {
     _posts = _repositorioPosts.getPosts(s, p, f);
     notifyListeners();
 
+  }
 
+  void atualizar()
+  {
+    _posts = _repositorioPosts.getPosts("", 0, 0);
+    notifyListeners();
   }
 
   Widget build(BuildContext context) 
