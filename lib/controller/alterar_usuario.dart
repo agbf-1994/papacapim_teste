@@ -10,6 +10,7 @@ import '../view/tela_alteracao_usuario.dart';
 import '../view/tela_redir_login.dart';
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
+import 'mostrar_alerta.dart';
 import 'repository/repo_usuario.dart';
 import 'verificar_dados.dart';
 
@@ -64,17 +65,17 @@ class _AlterarUsuarioState extends State<AlterarUsuario>
       {
         Usuario usr  = Usuario.atualizar(u, n, s, rs);
       
-        await _repositorioUsuarios.alterarUsuario(usr);
+        _repositorioUsuarios.alterarUsuario(usr);
+      
+        
         if(senhaEditada)
         {
-          if(mounted)
-          {
-            setState
+          setState
             (
               () 
-              async {
+              {
                 
-                Navigator.push
+                Navigator.pushReplacement
                 (
                   context, 
                   MaterialPageRoute
@@ -85,84 +86,30 @@ class _AlterarUsuarioState extends State<AlterarUsuario>
               
               }
             );
-
-          }
+          
 
         }
         else if(!senhaEditada)
-        { 
-          if(mounted)
-          {
-            setState
-            (
-              () 
-              async {
+        {
+          setState
+          (
+            () 
+            {
                 
                 Navigator.pop(context);
               }
-            );
-
-          }
+          );
 
         }
         
-        
-        /*
-        setState
-        (
-          () 
-          async 
-          {
-            Usuario usr  = Usuario.atualizar(u, n, s, rs);
-            
-            await _repositorioUsuarios.alterarUsuario(usr);
-
-            if(senhaEditada)
-            {
-              if(mounted)
-              {
-                Navigator.pushReplacement
-                (
-                  context, 
-                  MaterialPageRoute
-                  (
-                    builder: (context) => TelaRedirLogin(),
-                  )
-                );
-
-              }
-
-            }
-            else
-            {
-              if(mounted)
-              {
-                Navigator.pop(context);
-
-              }
-            }
-
-          }
-        );
-      */  
       }
+      
       
       else if(!confirmar)
       {
-        print('dados inválidos');
+        mostrarAlerta(context, "Dados inválidos!");
       }
 
-      /* 
-      Usuario usr  = Usuario.atualizar(u, n, s, rs);
-      setState
-      (
-        () 
-        async {
-          
-          await _repositorioUsuarios.alterarUsuario(usr);
-        }
-      );
-      */
       
     }
     catch(e)

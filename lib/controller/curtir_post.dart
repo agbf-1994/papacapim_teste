@@ -40,7 +40,8 @@ class _CurtirState extends State<Curtir>
     (
       (error)
       {
-        mostrarAlerta(context, "${error.toString()}");
+        mostrarAlerta(context, error.toString());
+        return error;
         
       }
     ).then

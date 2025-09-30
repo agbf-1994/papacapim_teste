@@ -1,12 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:papacapim_v02/controller/mostrar_alerta.dart';
 
 
 import '../model/sessao.dart';
-//import '../model/usuario.dart';
 import '../view/tela_feed_usuario.dart';
 import '../view/tela_login.dart';
-//import '../view/tela_principal.dart';
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
 import 'ger_token_sessao.dart';
@@ -21,7 +21,6 @@ class Autenticacao extends StatefulWidget
 
   @override
   State<Autenticacao> createState() => _AutenticacaoState();
-  //State<StatefulWidget> createState() => _AutenticacaoState();
 
 }
 
@@ -29,10 +28,8 @@ class _AutenticacaoState extends State<Autenticacao>
 {
   final RepoUsuario _repositorioUsuarios = RepoUsuario(ApiPrincipal(), ApiAcesso());
   
-  //late Future<List<UsuarioConta>> _sessoes;
   late Sessao _usuarioLogado;
   late String? token;
-  //bool logado = false;
 
   
   @override
@@ -54,6 +51,7 @@ class _AutenticacaoState extends State<Autenticacao>
 
       if(mounted)
       {
+        
         setState
         (
           () 
@@ -73,6 +71,14 @@ class _AutenticacaoState extends State<Autenticacao>
           }
         );
       }
+      
+
+      
+
+      
+      
+      
+      
 
     }
     else if(!senhaLoginIdeal(s))

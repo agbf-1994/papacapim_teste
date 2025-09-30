@@ -4,6 +4,7 @@ import '../model/sessao.dart';
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
 import 'autenticacao.dart';
+import 'ger_token_sessao.dart';
 import 'repository/repo_usuario.dart';
 
 class Sair extends StatefulWidget
@@ -26,9 +27,10 @@ class _SairState extends State<Sair>
     _sessao = _repositorioSessao.getSessoes();
   }
 
-  Future<void> apagar()
+
+  Future<void> apagar(int a)
   async {
-    await _repositorioSessao.apagarSessaoAtual();
+    await _repositorioSessao.apagarSessao(a);
     if(mounted)
     {
       setState
@@ -50,46 +52,6 @@ class _SairState extends State<Sair>
     
   }
 
-  Widget build(BuildContext context) 
-  {
-    return FutureBuilder
-        (
-          future: _sessao, 
-          builder: (context, snapshot)
-          {
-            
-            if(snapshot.hasData)
-            {
-              return ElevatedButton
-              (
-                child: const Text('Sair'),
-                onPressed: () 
-                {
-                  apagar();
-                  
-                },
-              );
-            }
-            else if(snapshot.hasError)
-            {
-              return const Center
-              (
-                child: Text("Sessão inválida"),
-              );
-            }
-            else
-            {
-              return const Center(child: CircularProgressIndicator());
-
-            }
-          },
-         
-        );
-    
-    
-  }
-
-  /*
   @override
   Widget build(BuildContext context) 
   {
@@ -101,15 +63,34 @@ class _SairState extends State<Sair>
             
             if(snapshot.hasData)
             {
-              return ElevatedButton
-              (
-                child: const Text('Sair'),
-                onPressed: () 
-                {
-                  apagar();
-                  
-                },
-              );
+              if(snapshot.data!.length==1)
+              {
+                return ElevatedButton
+                (
+                  child: const Text('Sair'),
+                  onPressed: () 
+                  {
+                    apagar(snapshot.data!.first.id);
+                    
+                  },
+                );
+
+
+              }
+              else
+              {
+                return ElevatedButton
+                (
+                  child: const Text('Você tem sessões em aberto.'),
+                  onPressed: () 
+                  {
+                    
+                    
+                  },
+                );
+              }
+              
+              
             }
             else if(snapshot.hasError)
             {
@@ -123,11 +104,11 @@ class _SairState extends State<Sair>
               return const Center(child: CircularProgressIndicator());
 
             }
-          },
+          }
          
         );
     
     
   }
-  */
+
 }

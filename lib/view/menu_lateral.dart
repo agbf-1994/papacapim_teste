@@ -12,11 +12,7 @@ class MenuLateral extends StatelessWidget
 {
   const MenuLateral({super.key});
 
-  void _buscarUsuario()
-  {
-
-
-  }
+  
   @override
   Widget build(BuildContext context) 
   {
@@ -69,15 +65,7 @@ class MenuLateral extends StatelessWidget
                   builder: (builder) => const Sobre()
                 )
               );
-            case 5:
-
-              Navigator.of(context).pushReplacement
-              (
-                MaterialPageRoute
-                (
-                  builder: (builder) => const Autenticacao(),
-                )
-              );
+            
           }
         },
         children:
@@ -125,11 +113,7 @@ class MenuLateral extends StatelessWidget
             icon: Icon(Icons.android), 
             label: const Text('Sobre...'),
           ),
-          NavigationDrawerDestination
-          (
-            icon: Icon(Icons.exit_to_app), 
-            label: const Text('Sair'),
-          ),
+          
 
         ]
       );

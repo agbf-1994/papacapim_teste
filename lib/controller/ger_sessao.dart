@@ -3,6 +3,7 @@ import '../model/sessao.dart';
 import '../view/tela_sessao.dart';
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
+import 'autenticacao.dart';
 import 'repository/repo_usuario.dart';
 
 class GerSessao extends StatefulWidget
@@ -34,7 +35,6 @@ class _GerSessaoState extends State<GerSessao>
     (
       ()
       {
-        
         if(mounted)
         {
           Navigator.pushReplacement
@@ -119,9 +119,37 @@ class _GerSessaoState extends State<GerSessao>
             
             else if(snapshot.hasError)
             {
-              return const Center
+              return Column
               (
-                child: Text('Erro de carregamento'),
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: 
+                [
+                  const Text("Erro de requisição"),
+                  SizedBox(height: 10.0,),
+                  ElevatedButton
+                  (
+                    onPressed: 
+                    ()
+                    {
+                      setState
+                      (
+                        () 
+                        {
+                          Navigator.push
+                          (
+                            context, 
+                            MaterialPageRoute
+                            (
+                              builder: (context) => Autenticacao(),
+                            )
+                          );
+                        }
+                      );
+                    }, 
+                    child: const Text("Voltar ao login"),
+                  ),
+                ]
               );
 
             }

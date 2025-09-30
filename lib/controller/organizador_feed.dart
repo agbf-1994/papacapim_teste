@@ -15,6 +15,8 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
 {
 
   final GerFeedUsuario _geFeedUsuarios = GerFeedUsuario();
+  late String _termo;
+  int _pagina = 0;
   
   void _organizar(String? tm, int? pg, int? fd)
   {
@@ -22,9 +24,20 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
     (
       () 
       {
-        _geFeedUsuarios.sortear(tm!, pg!, fd!);
+        _geFeedUsuarios.sortear(tm, pg, fd);
         
         
+      }
+    );
+  }
+
+  void _atualizar()
+  {
+    setState
+    (
+      () 
+      {
+        _geFeedUsuarios.atualizar();
       }
     );
   }
@@ -37,6 +50,20 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
     (
       children: 
       [
+        TextField
+            (
+              decoration: const InputDecoration
+              (
+                labelText: 'Buscar',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (valor)
+              {
+                _termo = valor;
+                _organizar(_termo, null, null);
+
+              },
+            ),
         SizedBox(height: 10.0,),
         Card
         (
@@ -57,7 +84,7 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
                     
                     onPressed: () 
                     {
-                      _organizar("", 0, 0);
+                      _organizar(null, null, 0);
                       
                     }
                   ),
@@ -67,7 +94,7 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
                     
                     onPressed: () 
                     {
-                      _organizar("", 0, 1);
+                      _organizar(null, null, 1);
                     }
                   ),
                   
@@ -85,6 +112,47 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
           child: _geFeedUsuarios.build(context),
 
         ),
+        Card
+        (
+          child: Row
+          (
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: 
+            [
+              IconButton
+              (
+                icon: Icon(Icons.arrow_back),
+                onPressed: 
+                ()
+                {
+                  _organizar(null, _pagina--, null);
+
+                },
+              ),
+              IconButton
+              (
+                icon: Icon(Icons.update),
+                onPressed: 
+                ()
+                {
+                  _atualizar();
+
+                },
+              ),
+              IconButton
+              (
+                icon: Icon(Icons.arrow_forward),
+                onPressed: 
+                ()
+                {
+                  _organizar(null, _pagina++, null);
+
+                },
+              ),
+            ],
+          ),
+        )
       ],
 
     );
