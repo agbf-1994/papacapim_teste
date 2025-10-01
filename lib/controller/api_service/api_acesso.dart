@@ -699,7 +699,7 @@ class ApiAcesso
   }
 
 
-  Future<List<Post>> listarRespostas(int cp, int? p) async 
+  Future<List<Post>> listarRespostas(String cp, int? p) async 
   {
     final token = await getToken();
     if (token != null) 
