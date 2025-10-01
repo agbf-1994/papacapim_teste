@@ -21,11 +21,11 @@ class _ExcluirPostState extends State<ExcluirPost>
   final RepoUsuario _repositorioPosts = RepoUsuario(ApiPrincipal(), ApiAcesso());
   //late Future<Post> _post;
 
-  void _excluirPost(int pe)
-  {
+  Future<void> _excluirPost(int pe)
+  async {
     try
     {
-      _repositorioPosts.excluirPost(pe);
+      await _repositorioPosts.excluirPost(pe);
       if(mounted)
       {
         setState
