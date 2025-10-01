@@ -13,7 +13,7 @@ import 'responder_post.dart';
 class GerFeedUsuario extends ChangeNotifier
 {
   final RepoUsuario _repositorioPosts = RepoUsuario(ApiPrincipal(), ApiAcesso());
-  late Future<List<Post>> _posts = _repositorioPosts.getPosts("", 0, 0);
+  late Future<List<Post>> _posts = _repositorioPosts.getPosts(null, null, null);
 
   void sortear(String? s, int? p, int? f)
   {
@@ -24,7 +24,7 @@ class GerFeedUsuario extends ChangeNotifier
 
   void atualizar()
   {
-    _posts = _repositorioPosts.getPosts("", 0, 0);
+    _posts = _repositorioPosts.getPosts(null, null, null);
     notifyListeners();
   }
 
