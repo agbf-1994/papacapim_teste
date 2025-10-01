@@ -23,7 +23,7 @@ class _CurtirState extends State<Curtir>
   async {
     try
     {
-      Curtida _postCurtido = await _post.curtirPost(cc);
+      Curtida _ = await _post.curtirPost(cc);
       if(mounted)
       {
         setState
