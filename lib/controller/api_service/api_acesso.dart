@@ -708,8 +708,18 @@ class ApiAcesso
       final http.Client cliente = http.Client();
       try 
       {
+        String url = "";
+        if(p==null)
+        {
+          url = 'https://api.papacapim.just.pro.br/posts/$cp/replies';
+
+        }
+        else
+        {
+          url = 'https://api.papacapim.just.pro.br/posts/$cp/replies?page=$p';
+        }
         http.Response? resp = await cliente.get(
-          Uri.parse('https://api.papacapim.just.pro.br/posts/$cp/replies?page=$p'),
+          Uri.parse(url),
           headers: 
           {
             'X-Session-Token': token,
