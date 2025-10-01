@@ -25,7 +25,7 @@ class GerPostsUsuario extends ChangeNotifier
 
   void atualizar()
   {
-    _postsUsuario = _listaPostsUsuario.getMeusPosts(0);
+    _postsUsuario = _listaPostsUsuario.getMeusPosts(null);
     notifyListeners();
   }
 
