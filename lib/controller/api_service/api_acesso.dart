@@ -731,7 +731,7 @@ class ApiAcesso
         
         if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          if(resp.statusCode==201)
+          if(resp.statusCode == 200)
           {
             return respostas.map((json) => Post.fromJson(json)).toList();
           }
