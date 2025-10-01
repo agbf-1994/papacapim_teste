@@ -18,41 +18,30 @@ class Curtir extends StatefulWidget
 class _CurtirState extends State<Curtir>
 {
   final RepoUsuario _post = RepoUsuario(ApiPrincipal(), ApiAcesso());
-  late Future<Curtida> _postCurtido;
 
-  void curtir(int cc)
-  {
-    _postCurtido = _post.curtirPost(cc);
-    if(mounted)
+  Future<void> curtir(int cc)
+  async {
+    try
     {
-      setState
-      (
-        () 
-        {
-          
-          
-      
-        }
-      );
+      Curtida _postCurtido = await _post.curtirPost(cc);
+      if(mounted)
+      {
+        setState
+        (
+          () 
+          {
+            
+            
+        
+          }
+        );
+      }
 
     }
-    _postCurtido.catchError
-    (
-      (error)
-      {
-        mostrarAlerta(context, error.toString());
-        return error;
-        
-      }
-    ).then
-    (
-      (value) 
-      {
-        mostrarAlerta(context, "Você curtiu o post, ${value.usrLogin}!");
-
-      
-      },
-    );
+    catch(e)
+    {
+      mostrarAlerta(context, e.toString());
+    }
     
   }
 
