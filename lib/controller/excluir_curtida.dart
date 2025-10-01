@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papacapim_v02/controller/mostrar_alerta.dart';
 
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
@@ -19,19 +20,29 @@ class _ExcluirCurtidaState extends State<ExcluirCurtida>
   
 
   void _excluirCurtida(int pe)
-  {
-    _repositorioCurtidas.apagarCurtida(pe);
-    if(mounted)
+  async {
+    try
     {
-      setState
-      (
-        () 
-        {
-          
-        }
-      );
+      await _repositorioCurtidas.apagarCurtida(pe);
+      if(mounted)
+      {
+        setState
+        (
+          () 
+          {
+            
+          }
+        );
+
+      }
 
     }
+    catch(e)
+    {
+      mostrarAlerta(context, e.toString());
+
+    }
+    
     
     
   }
