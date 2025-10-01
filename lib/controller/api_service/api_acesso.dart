@@ -46,22 +46,23 @@ class ApiAcesso
 
         List<dynamic> data = json.decode(resp.body);
         
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return data.map((json) => UsuarioConta.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -98,23 +99,24 @@ class ApiAcesso
         
         List<dynamic> usuariosBuscados = json.decode(resp.body);
         
-        switch (resp.statusCode)
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return usuariosBuscados.map((json) => UsuarioConta.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
         }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
+        }
+
 
       }
       on Exception catch(_)
@@ -150,23 +152,24 @@ class ApiAcesso
           
         );
 
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return UsuarioConta.fromJson(json.decode(resp.body));
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
         }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
+        }
+        
 
       }
       on Exception catch(_)
@@ -202,18 +205,22 @@ class ApiAcesso
           body: usuario,
           
         );
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 201:
+          if(resp.statusCode==201)
+          {
             return UsuarioConta.fromJson(json.decode(resp.body));
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -246,22 +253,22 @@ class ApiAcesso
             headers: {'X-Session-Token': token, 'Content-Type': 'application/json'},
           
           );
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 201:
+          if(resp.statusCode==200)
+          {
             return Seguidor.fromJson(json.decode(resp.body));
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -298,22 +305,22 @@ class ApiAcesso
 
           List<dynamic> seguidores = json.decode(resp.body);
             
-          switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return seguidores.map((json) => Seguidor.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -351,21 +358,22 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           );
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
+          if(resp.statusCode==204)
+          {
+            return;
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
           
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -437,23 +445,24 @@ class ApiAcesso
 
         List<dynamic> posts = json.decode(resp.body);
          
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return posts.map((json) => Post.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
         }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
+        }
+
 
       }
       on Exception catch(_)
@@ -497,22 +506,22 @@ class ApiAcesso
 
         List<dynamic> posts = json.decode(resp.body);
         
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return posts.map((json) => Post.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -558,22 +567,22 @@ class ApiAcesso
 
         List<dynamic> posts = json.decode(resp.body);
       
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return posts.map((json) => Post.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -609,23 +618,21 @@ class ApiAcesso
           body: postNovo,
         );
 
-        switch (resp.statusCode)
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-
-          case 201:
+          if(resp.statusCode==201)
+          {
             return Post.fromJson(json.decode(resp.body));
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -660,24 +667,22 @@ class ApiAcesso
           body: resposta,
         );
         
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
-            throw Exception("Resposta enviada!");
-          case 201:
+          if(resp.statusCode==201)
+          {
             return Post.fromJson(json.decode(resp.body));
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -703,8 +708,18 @@ class ApiAcesso
       final http.Client cliente = http.Client();
       try 
       {
+        String url = "";
+        if(p==null)
+        {
+          url = 'https://api.papacapim.just.pro.br/posts/$cp/replies';
+
+        }
+        else
+        {
+          url = 'https://api.papacapim.just.pro.br/posts/$cp/replies?page=$p';
+        }
         http.Response? resp = await cliente.get(
-          Uri.parse('https://api.papacapim.just.pro.br/posts/$cp/replies?page=$p'),
+          Uri.parse(url),
           headers: 
           {
             'X-Session-Token': token,
@@ -713,22 +728,22 @@ class ApiAcesso
         );
         List<dynamic> respostas = json.decode(resp.body);
 
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode == 200)
+          {
             return respostas.map((json) => Post.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -761,21 +776,24 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
-          switch (resp.statusCode)
+          
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          if(resp.statusCode==204)
+          {
+            return;
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
         }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
+        }
+
 
       }
       on Exception catch(_)
@@ -809,22 +827,22 @@ class ApiAcesso
           },
         );
  
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 201:
+          if(resp.statusCode==201)
+          {
             return Curtida.fromJson(json.decode(resp.body));
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -858,22 +876,22 @@ class ApiAcesso
         );
         List<dynamic> curtidas = json.decode(resp.body);
          
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return curtidas.map((json) => Curtida.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -906,20 +924,22 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
-          switch (resp.statusCode)
+          
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          if(resp.statusCode==204)
+          {
+            return;
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -956,22 +976,22 @@ class ApiAcesso
         );
         List<dynamic> sessoes = json.decode(resp.body);
         
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 200:
+          if(resp.statusCode==200)
+          {
             return sessoes.map((json) => Sessao.fromJson(json)).toList();
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }
@@ -1004,20 +1024,22 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
-        switch (resp.statusCode)
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
         {
-          case 401:
-            throw Exception("Usuário e/ou senha inválidos.");
-          case 404:
-            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
-          case 408:
-            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
-          case 500:
-            throw Exception("Erro interno do servidor.");
-          case 503:
-            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
-          default:
-            throw Exception(resp.reasonPhrase);
+          if(resp.statusCode==204)
+          {
+            return;
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
         }
 
       }

@@ -21,28 +21,38 @@ class _ExcluirPostState extends State<ExcluirPost>
   final RepoUsuario _repositorioPosts = RepoUsuario(ApiPrincipal(), ApiAcesso());
   //late Future<Post> _post;
 
-  void _excluirPost(int pe)
-  {
-    _repositorioPosts.excluirPost(pe);
-    if(mounted)
+  Future<void> _excluirPost(int pe)
+  async {
+    try
     {
-      setState
-      (
-        () 
-        {
-          mostrarAlerta(context, "Post excluído!");
-          Navigator.push
-            (
-              context,
-              MaterialPageRoute(
-              builder: (builder) => Perfil(),
-              )
-            );
-      
-        }
-      );
+      await _repositorioPosts.excluirPost(pe);
+      if(mounted)
+      {
+        setState
+        (
+          () 
+          {
+            mostrarAlerta(context, "Post excluído!");
+            Navigator.push
+              (
+                context,
+                MaterialPageRoute(
+                builder: (builder) => Perfil(),
+                )
+              );
+        
+          }
+        );
+
+      }
 
     }
+    catch(e)
+    {
+      mostrarAlerta(context, e.toString());
+
+    }
+    
     
   }
 

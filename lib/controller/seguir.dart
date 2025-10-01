@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papacapim_v02/controller/mostrar_alerta.dart';
 
 import '../model/usuario.dart';
 import 'api_service/api_acesso.dart';
@@ -17,23 +18,33 @@ class Seguir extends StatefulWidget
 class _SeguirState extends State<Seguir>
 {
   final RepoUsuario _repositorioSeguidores = RepoUsuario(ApiPrincipal(), ApiAcesso());
-  late Future<Seguidor> _seguidor;
+  
+  Future<void> seguir(String us)
+  async {
 
-  void seguir(String us)
-  {
-    _seguidor = _repositorioSeguidores.seguirUsuario(us);
-    if(mounted)
+    try
     {
-      setState
-      (
-        () 
-        {
-          //print('Usuário seguido!');
-      
-        }
-      );
+      Seguidor _ = await _repositorioSeguidores.seguirUsuario(us);
+      if(mounted)
+      {
+        setState
+        (
+          () 
+          {
+            //print('Usuário seguido!');
+        
+          }
+        );
+
+      }
 
     }
+    catch(e)
+    {
+      mostrarAlerta(context, e.toString());
+
+    }
+    
     
   }
 
