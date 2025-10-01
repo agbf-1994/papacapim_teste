@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-
-//import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../model/sessao.dart';
 import '../../model/usuario.dart';
-//import '../ger_token_sessao.dart';
 
 class ApiPrincipal 
 {
@@ -21,19 +18,29 @@ class ApiPrincipal
       );
       List<dynamic> data = json.decode(resp.body);
 
-      if(resp.statusCode == 200)
+      switch (resp.statusCode)
       {
-        return data.map((json) => UsuarioConta.fromJson(json)).toList();
+        case 200:
+          return data.map((json) => UsuarioConta.fromJson(json)).toList();
+        case 401:
+          throw Exception("Usuário e/ou senha inválidos.");
+        case 404:
+          throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+        case 408:
+          throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+        case 500:
+          throw Exception("Erro interno do servidor.");
+        case 503:
+          throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+        default:
+          throw Exception(resp.reasonPhrase);
       }
-      else
-      {
-        return Future.error(resp.body.toString());
-      }
-      
+
     }
-    catch(e)
+    on Exception catch(_)
     {
-      return Future.error(e.toString());
+      rethrow;
+
     }
   }
 
@@ -52,23 +59,19 @@ class ApiPrincipal
         body: body,
         
       );
-      //print("Resposta: ${resp.statusCode}, ${resp.reasonPhrase}");
-      //print("Conteúdo: ${resp.body}");
 
-      if(resp.statusCode == 201)
+      switch(resp.statusCode)
       {
-        return UsuarioConta.fromJson(json.decode(resp.body));
-      }
-      else
-      {
-        return Future.error(resp.body.toString());
-      }
+        case 201:
+          return UsuarioConta.fromJson(json.decode(resp.body));
+        default:
+          throw Exception(resp.reasonPhrase);
 
-      
+      }   
     }
-    catch(e)
+    on Exception catch(_)
     {
-      return Future.error(e.toString());
+      rethrow;
     }
   }
 
@@ -85,19 +88,28 @@ class ApiPrincipal
         headers: {'Content-Type': 'application/json'},
         body: body  
       );
-      if(resp.statusCode == 200)
+      switch (resp.statusCode)
       {
-        return Sessao.fromJson(json.decode(resp.body));
-      }
-      else
-      {
-        return Future.error(resp.body.toString());
+        case 200:
+          return Sessao.fromJson(json.decode(resp.body));
+        case 401:
+          throw Exception("Usuário e/ou senha inválidos.");
+        case 404:
+          throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+        case 408:
+          throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+        case 500:
+          throw Exception("Erro interno do servidor.");
+        case 503:
+          throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+        default:
+          throw Exception(resp.reasonPhrase);
       }
 
     }
-    catch(e)
+    on Exception catch(_)
     {
-      return Future.error(e.toString());
+      rethrow;
 
     }
 
@@ -116,19 +128,17 @@ class ApiPrincipal
         );
         List<dynamic> data = json.decode(resp.body);
 
-        if(resp.statusCode == 200)
+        switch(resp.statusCode)
         {
-          return data.map((json) => Sessao.fromJson(json)).toList();
-        }
-        else
-        {
-          return Future.error(resp.body.toString());
-        }
-        
+          case 200:
+            return data.map((json) => Sessao.fromJson(json)).toList();
+          default:
+            throw Exception(resp.reasonPhrase);
+        }        
       }
-      catch(e)
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
       }
     }
 
