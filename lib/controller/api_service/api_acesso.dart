@@ -46,28 +46,36 @@ class ApiAcesso
 
         List<dynamic> data = json.decode(resp.body);
         
-
-        if(resp.statusCode == 200)
-        { 
-          return data.map((json) => UsuarioConta.fromJson(json)).toList();
-        }
-        else
+        switch (resp.statusCode)
         {
-          return Future.error(resp.body.toString());
+          case 200:
+            return data.map((json) => UsuarioConta.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-        
-      }
-      catch(e)
-      {
-        return Future.error(e.toString());
-      }
 
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }
     }
-    
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
+    
      
   }
 
@@ -90,26 +98,36 @@ class ApiAcesso
         
         List<dynamic> usuariosBuscados = json.decode(resp.body);
         
-        if(resp.statusCode == 200)
-        { 
-          return usuariosBuscados.map((json) => UsuarioConta.fromJson(json)).toList();
-        }
-        else
+        switch (resp.statusCode)
         {
-          return Future.error(resp.body.toString());
+          case 200:
+            return usuariosBuscados.map((json) => UsuarioConta.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-        
+
       }
-      catch(e)
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
 
     }
     
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
      
   }
@@ -132,26 +150,35 @@ class ApiAcesso
           
         );
 
-        if(resp.statusCode == 200)
-        { 
-          
-          return UsuarioConta.fromJson(json.decode(resp.body));
-        }
-        else
+        switch (resp.statusCode)
         {
-          return Future.error(resp.body.toString());
+          case 200:
+            return UsuarioConta.fromJson(json.decode(resp.body));
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-        
+
       }
-      catch(e)
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
 
     }
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
   
@@ -175,27 +202,32 @@ class ApiAcesso
           body: usuario,
           
         );
-        if(resp.statusCode == 201)
-        { 
-          
-          return UsuarioConta.fromJson(json.decode(resp.body));
-        }
-        else
+        switch (resp.statusCode)
         {
-          return Future.error(resp.body.toString());
+          case 201:
+            return UsuarioConta.fromJson(json.decode(resp.body));
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-        
+
       }
-      catch(e)
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
 
     }
     
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
      
   }
@@ -214,26 +246,36 @@ class ApiAcesso
             headers: {'X-Session-Token': token, 'Content-Type': 'application/json'},
           
           );
-          if(resp.statusCode == 201)
-          {
-            return Seguidor.fromJson(json.decode(resp.body));
-          }
-          else
-          {
-            return Future.error(resp.body.toString());
-          }
-
-          
-        }
-        catch(e)
+        switch (resp.statusCode)
         {
-          return Future.error(e.toString());
+          case 201:
+            return Seguidor.fromJson(json.decode(resp.body));
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
+
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }
+
 
     }
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
 
     }
 
@@ -255,27 +297,36 @@ class ApiAcesso
           );
 
           List<dynamic> seguidores = json.decode(resp.body);
-
-          if(resp.statusCode == 200)
-          {
-            return seguidores.map((json) => Seguidor.fromJson(json)).toList();
-          }
-          else
-          {
-            return Future.error(resp.body.toString());
-          }
-
-          
-        }
-        catch(e)
+            
+          switch (resp.statusCode)
         {
-          return Future.error(e.toString());
+          case 200:
+            return seguidores.map((json) => Seguidor.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
+
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }
 
     }
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
 
     }
 
@@ -292,17 +343,41 @@ class ApiAcesso
         {
           http.Response? resp = await cliente.delete
           (
-            Uri.parse('https://api.papacapim.just.pro.br/users/$sn/followers/$st'),
-            headers: {
+            Uri.parse
+            ('https://api.papacapim.just.pro.br/users/$sn/followers/$st'),
+            headers: 
+            {
               'X-Session-Token': token,
               'Content-Type': 'application/json',
             },
-          );          
-        }
-        catch(e)
+          );
+        switch (resp.statusCode)
         {
-          return Future.error(e.toString());
+          
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
+
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }    
+    }
+    else
+    {
+      throw Exception("Erro de autenticação!");
     }
     
 
@@ -361,25 +436,35 @@ class ApiAcesso
         );
 
         List<dynamic> posts = json.decode(resp.body);
-        
-
-        if (resp.statusCode == 200) 
+         
+        switch (resp.statusCode)
         {
-          return posts.map((json) => Post.fromJson(json)).toList();
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+          case 200:
+            return posts.map((json) => Post.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
+
+      }
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
     } 
     else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -412,24 +497,34 @@ class ApiAcesso
 
         List<dynamic> posts = json.decode(resp.body);
         
-
-        if (resp.statusCode == 200) 
+        switch (resp.statusCode)
         {
-          return posts.map((json) => Post.fromJson(json)).toList();
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+          case 200:
+            return posts.map((json) => Post.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
+
+      }
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
     } 
     else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -462,25 +557,35 @@ class ApiAcesso
         );
 
         List<dynamic> posts = json.decode(resp.body);
-        
-
-        if (resp.statusCode == 200) 
+      
+        switch (resp.statusCode)
         {
-          return posts.map((json) => Post.fromJson(json)).toList();
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+          case 200:
+            return posts.map((json) => Post.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
+
+      }
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
     } 
     else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -503,26 +608,38 @@ class ApiAcesso
           },
           body: postNovo,
         );
-        if (resp.statusCode == 201) 
+
+        switch (resp.statusCode)
         {
-          return Post.fromJson(json.decode(resp.body));
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+
+          case 201:
+            return Post.fromJson(json.decode(resp.body));
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
+
+      }
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
     } 
     else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
-
   Future<Post> responderPost(PostResposta pu, int cp) async 
   {
     final token = await getToken();
@@ -542,23 +659,37 @@ class ApiAcesso
           },
           body: resposta,
         );
-        if (resp.statusCode == 201) 
+        
+        switch (resp.statusCode)
         {
-          return Post.fromJson(json.decode(resp.body));
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+          case 200:
+            throw Exception("Resposta enviada!");
+          case 201:
+            return Post.fromJson(json.decode(resp.body));
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
+
+      }
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
     } 
     else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -581,23 +712,35 @@ class ApiAcesso
           },
         );
         List<dynamic> respostas = json.decode(resp.body);
-        if (resp.statusCode == 200) 
+
+        switch (resp.statusCode)
         {
-          return respostas.map((json) => Post.fromJson(json)).toList();
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+          case 200:
+            return respostas.map((json) => Post.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
+
+      }
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
     } 
     else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -618,17 +761,34 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
-                   
-        }
-        catch(e)
+          switch (resp.statusCode)
         {
-          return Future.error(e.toString());
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
+
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }    
     }
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
+    
 
   }
 
@@ -648,24 +808,35 @@ class ApiAcesso
             'Content-Type': 'application/json',
           },
         );
-        if (resp.statusCode == 201) 
+ 
+        switch (resp.statusCode)
         {
-          return Curtida.fromJson(json.decode(resp.body));
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+          case 201:
+            return Curtida.fromJson(json.decode(resp.body));
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
-      {
-        return Future.error(e.toString());
-      }
 
-    }
-    else
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }
+    } 
+    else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -686,24 +857,35 @@ class ApiAcesso
           },
         );
         List<dynamic> curtidas = json.decode(resp.body);
-        if (resp.statusCode == 200) 
+         
+        switch (resp.statusCode)
         {
-          return curtidas.map((json) => Curtida.fromJson(json)).toList();
-        } 
-        else 
-        {
-          return Future.error(resp.body.toString());
+          case 200:
+            return curtidas.map((json) => Curtida.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-      } 
-      catch (e) 
-      {
-        return Future.error(e.toString());
-      }
 
-    }
-    else
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }
+    } 
+    else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -724,16 +906,32 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
-                   
-        }
-        catch(e)
+          switch (resp.statusCode)
         {
-          return Future.error(e.toString());
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
+
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }    
     }
     else
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
 
   }
@@ -758,23 +956,34 @@ class ApiAcesso
         );
         List<dynamic> sessoes = json.decode(resp.body);
         
-        if(resp.statusCode == 200)
+        switch (resp.statusCode)
         {
-          return sessoes.map((json) => Sessao.fromJson(json)).toList();
+          case 200:
+            return sessoes.map((json) => Sessao.fromJson(json)).toList();
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
-        else
-        {
-        return Future.error(resp.body.toString());
-        }
+
       }
-      catch(e)
+      on Exception catch(_)
       {
-        return Future.error(e.toString());
+        rethrow;
+
       }
-    }
-    else
+    } 
+    else 
     {
-      return Future.error("Erro de autenticação!");
+      throw Exception("Erro de autenticação!");
     }
   }
 
@@ -795,47 +1004,33 @@ class ApiAcesso
               'Content-Type': 'application/json',
             },
           ); 
-          
-                   
-        }
-        catch(e)
+        switch (resp.statusCode)
         {
-          return Future.error(e.toString());
+          case 401:
+            throw Exception("Usuário e/ou senha inválidos.");
+          case 404:
+            throw Exception("Não foi possível acessar a sua conta.\nTente novamente mais tarde.");
+          case 408:
+            throw Exception("Tempo esgotado.\nPode haver um problema de conexão de rede.");
+          case 500:
+            throw Exception("Erro interno do servidor.");
+          case 503:
+            throw Exception("O serviço está indisponível. \nTente novamente mais tarde.");
+          default:
+            throw Exception(resp.reasonPhrase);
         }
+
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }    
     }
-    
-
-  }
-
-
-  //Essa função sempre retorna 404, já que
-  //ele pede o código da sessão, e não '1',
-  //como a própria URL informa
-  Future<void> apagarSessaoAtual() async
-  {
-    final token = await getToken();
-    if(token!=null)
+    else
     {
-      final http.Client cliente = http.Client();
-
-        try
-        {
-          http.Response? resp = await cliente.delete
-          (
-            Uri.parse('https://api.papacapim.just.pro.br/sessions/1'),
-            headers: {
-              'X-Session-Token': token,
-              'Content-Type': 'application/json',
-            },
-          ); 
-          //print(resp.statusCode);         
-        }
-        catch(e)
-        {
-          return Future.error(e.toString());
-        }
+      throw Exception("Erro de autenticação!");
     }
-    
 
   }
 
