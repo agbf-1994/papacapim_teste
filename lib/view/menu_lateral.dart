@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../controller/autenticacao.dart';
+
 import 'tela_busca_usuario.dart';
 import 'tela_feed_usuario.dart';
-//import 'tela_lista_usuario.dart';
 import 'tela_perfil.dart';
 import 'tela_sessao.dart';
 import 'tela_sobre.dart';

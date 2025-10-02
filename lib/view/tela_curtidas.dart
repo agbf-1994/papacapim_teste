@@ -21,7 +21,6 @@ class _VerCurtidasState extends State<VerCurtidas>
     return Scaffold
     (
       appBar: AppBar(title: Text('Quem curtiu a mensagem')),
-      //body: GerFeedUsuario(),
       body: Padding
       (
         padding: const EdgeInsets.all(8.0),

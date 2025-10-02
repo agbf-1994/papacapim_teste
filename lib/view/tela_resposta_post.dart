@@ -14,7 +14,6 @@ class VerRespostas extends StatefulWidget
 
 class _VerRespostasState extends State<VerRespostas> 
 {
-  //get idPost => null;
 
   @override
   Widget build(BuildContext context) 
@@ -22,7 +21,6 @@ class _VerRespostasState extends State<VerRespostas>
     return Scaffold
     (
       appBar: AppBar(title: Text('Respostas')),
-      //body: GerFeedUsuario(),
       body: Padding
       (
         padding: const EdgeInsets.all(8.0),

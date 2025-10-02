@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//import '../controller/verificar_dados.dart';
 
 class AlteracaoUsuario extends StatefulWidget 
 {
@@ -17,24 +16,6 @@ class _AlteracaoUsuarioState extends State<AlteracaoUsuario>
 
   String? _u, _n, _s, _cs;
 
-  //final TextEditingController _usuarioCadController = TextEditingController();
-  //final TextEditingController _nomeCadController = TextEditingController();
-  //final TextEditingController _senhaCadController = TextEditingController();
-  
-
-  
-  //String? _cs;
-
-  /*
-  @override
-  void dispose()
-  {
-    _usuarioCadController.dispose();
-    _nomeCadController.dispose();
-    _senhaCadController.dispose();
-    super.dispose();
-  }
-  */
 
   void alterar(String? u, String? n, String? s, String? rs){
     
@@ -141,7 +122,6 @@ class _AlteracaoUsuarioState extends State<AlteracaoUsuario>
                   if(_cadastroUsuarioKey.currentState!.validate())
                   {
                     _cadastroUsuarioKey.currentState!.save();
-                    //alterar(_usuarioCadController.text.trim(), _nomeCadController.text.trim(), _senhaCadController.text.trim(), _cs);
                     alterar(_u, _n, _s, _cs);
 
                   }

@@ -10,7 +10,7 @@ class Perfil extends StatefulWidget
 
   @override
   State<Perfil> createState() => _PerfilState();
-  //State<StatefulWidget> createState() => _PerfilState();
+  
 }
 
 class _PerfilState extends State<Perfil>
@@ -33,37 +33,7 @@ class _PerfilState extends State<Perfil>
 
       ),
       floatingActionButton: NovoPost(),
-      /*
-      body: ListView
-      (
-        children: 
-        [
-          Card
-          (
-            elevation: 10.0,
-            child: ListBody
-            (
-              children: 
-              [
-                ListTile
-                (
-                  title: Text('Usuário'),
-                  subtitle: Text('Nome completo'),
-                  leading: Icon(Icons.person),
-
-                ),
-                Text('História: O que você nem imagina o que acontecerá'),
-              ],
-
-            ),
-            
-          ),
-          const SizedBox(height: 10),
-
-        ],
       
-      )
-      */
     );
 
     
