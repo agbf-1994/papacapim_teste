@@ -351,7 +351,7 @@ class ApiAcesso
           http.Response? resp = await cliente.delete
           (
             Uri.parse
-            ('https://api.papacapim.just.pro.br/users/$sn/followers/'),
+            ('https://api.papacapim.just.pro.br/users/$sn/followers/1'),
             headers: 
             {
               'X-Session-Token': token,
