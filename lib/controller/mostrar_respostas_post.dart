@@ -64,9 +64,9 @@ class _MostrarRespostasPostState extends State<MostrarRespostasPost>
           if(snapshot.data!.isEmpty)
           {
             quantRespostas = 0;
-            return ElevatedButton
+            return IconButton
             (
-              child: 
+              icon: 
               Row
               (
                 children: 
@@ -87,9 +87,9 @@ class _MostrarRespostasPostState extends State<MostrarRespostasPost>
           else
           {
             quantRespostas = snapshot.data!.length;
-            return ElevatedButton
+            return IconButton
             (
-              child: 
+              icon: 
               Row
               (
                 children: 
@@ -111,9 +111,9 @@ class _MostrarRespostasPostState extends State<MostrarRespostasPost>
         }
         else if(snapshot.hasError)
         {
-          return ElevatedButton
+          return IconButton
           (
-            child: 
+            icon: 
             Row
               (
                 children: 
@@ -131,9 +131,16 @@ class _MostrarRespostasPostState extends State<MostrarRespostasPost>
         }
         else
         {
-          return ElevatedButton
+          return IconButton
           (
-            child: const Icon(Icons.stop),
+            icon: Row
+              (
+                children: 
+                [
+                  Icon(Icons.question_answer),
+                  Icon(Icons.stop),
+                ],
+              ),
             
             onPressed: () 
             {

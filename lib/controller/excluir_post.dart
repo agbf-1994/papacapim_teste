@@ -59,14 +59,14 @@ class _ExcluirPostState extends State<ExcluirPost>
   @override
   Widget build(BuildContext context) 
   {
-    return ElevatedButton
+    return IconButton
     (
       onPressed: () 
       {
         _excluirPost(widget.postAExcluir);
                                         
       },
-      child: const Icon(Icons.folder_delete_outlined),
+      icon: const Icon(Icons.folder_delete_outlined),
     );
     
   }

@@ -52,14 +52,14 @@ class _ExcluirCurtidaState extends State<ExcluirCurtida>
   @override
   Widget build(BuildContext context) 
   {
-    return ElevatedButton
+    return IconButton
     (
       onPressed: () 
       {
         _excluirCurtida(widget.curtidaAExcluir);
                                         
       },
-      child: const Icon(Icons.thumb_down),
+      icon: const Icon(Icons.thumb_down),
     );
     
   }

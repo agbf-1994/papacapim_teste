@@ -49,14 +49,14 @@ class _CurtirState extends State<Curtir>
   @override
   Widget build(BuildContext context) 
   {
-    return ElevatedButton
+    return IconButton
     (
       onPressed: () 
       {
         curtir(widget.curtido);
                                         
       },
-      child: const Icon(Icons.thumb_up),
+      icon: const Icon(Icons.thumb_up),
     );
     
   }
