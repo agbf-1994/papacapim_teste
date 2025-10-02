@@ -34,7 +34,6 @@ class _FeedUsuarioState extends State<FeedUsuario>
         */
       ),
       drawer: const MenuLateral(),
-      //body: GerFeedUsuario(),
       body: Padding
       (
         padding: const EdgeInsets.all(8.0),

@@ -21,7 +21,6 @@ class _VerSeguidoresState extends State<VerSeguidores>
     return Scaffold
     (
       appBar: AppBar(title: Text('Seguidores')),
-      //body: GerFeedUsuario(),
       body: Padding
       (
         padding: const EdgeInsets.all(8.0),

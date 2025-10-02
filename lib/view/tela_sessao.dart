@@ -26,8 +26,6 @@ class TelaSessao extends StatelessWidget
         )
       )
 
-      //body: GerSessao(),
-
     );
     
     

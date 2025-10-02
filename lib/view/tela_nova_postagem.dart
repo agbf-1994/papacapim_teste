@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:papacapim_v02/view/tela_feed_usuario.dart';
 
 class NovaPostagem extends StatefulWidget
 {
