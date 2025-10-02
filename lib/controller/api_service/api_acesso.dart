@@ -339,7 +339,7 @@ class ApiAcesso
 
   }
 
-  Future<void> apagarSeguidor(int st, String sn) async
+  Future<void> apagarSeguidor(/*int st,*/ String sn) async
   {
     final token = await getToken();
     if(token!=null)
@@ -351,7 +351,7 @@ class ApiAcesso
           http.Response? resp = await cliente.delete
           (
             Uri.parse
-            ('https://api.papacapim.just.pro.br/users/$sn/followers/$st'),
+            ('https://api.papacapim.just.pro.br/users/$sn/followers/'),
             headers: 
             {
               'X-Session-Token': token,
