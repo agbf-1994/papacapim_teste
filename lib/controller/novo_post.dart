@@ -12,7 +12,6 @@ class NovoPost extends StatefulWidget {
 
   @override
   State<NovoPost> createState() => _NovoPostState();
-  //State<StatefulWidget> createState() => _NovoPostState();
 }
 
 class _NovoPostState extends State<NovoPost> {
@@ -62,7 +61,6 @@ class _NovoPostState extends State<NovoPost> {
             MaterialPageRoute
             (
               builder: (context) => NovaPostagem(novoPost: _novoPost,),
-              //builder: (context) => NovoContato(adicionaContato: _adicionaContato) 
             )
           );
         }

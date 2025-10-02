@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'ger_feed_usuario.dart';
-//import 'responder_post.dart';
+
 
 class OrganizadorFeed extends StatefulWidget
 {

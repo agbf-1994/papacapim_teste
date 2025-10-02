@@ -1,4 +1,3 @@
-//import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
@@ -15,8 +14,6 @@ class NovoUsuario extends StatefulWidget
 
   @override
   State<NovoUsuario> createState() => _NovoUsuarioState();
-  //State<StatefulWidget> createState() => _NovoUsuarioState();
-
 }
 
 class _NovoUsuarioState extends State<NovoUsuario>

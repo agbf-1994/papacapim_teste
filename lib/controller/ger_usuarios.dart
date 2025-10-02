@@ -33,45 +33,58 @@ class GerUsuarios extends ChangeNotifier
             
             if(snapshot.hasData)
             {
-              return ListView
-              (
-                children: 
-                [
-                  for (var u in snapshot.data!)
-                  Card(
-                    child: ListBody
-                    (
-                      children: 
-                      [
-                        ListTile
+              if(snapshot.data!.isEmpty)
+              {
+                 return const AlertDialog
+                (
+                  content: Text('Não há usuários!'),
+                );
+              }
+              else
+              {
+                return ListView
+                  (
+                    children: 
+                    [
+                      for (var u in snapshot.data!)
+                      Card(
+                        child: ListBody
                         (
-                        title: Text(u.login),
-                        trailing: Text(u.name),
-                        ),
-                        SizedBox(height: 10.0,),
-                        Row
-                        (
-                          spacing: 12.0,
-                        
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: 
                           [
+                            ListTile
+                            (
+                            title: Text(u.login),
+                            trailing: Text(u.name),
                             
-                            MostrarSeguidores(loginUsuario: u.login,),
-                            Seguir(seguido: u.login,),
+                            ),
+                            SizedBox(height: 10.0,),
+                            Row
+                            (
+                              spacing: 12.0,
+                            
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: 
+                              [
+                                
+                                MostrarSeguidores(loginUsuario: u.login,),
+                                Seguir(seguido: u.login,),
+                              ],
+                            ),
+                            SizedBox(height: 10.0,),
+
                           ],
                         ),
-                        SizedBox(height: 10.0,),
+                      ),
+                      
+                    ],
+                  );
 
-                      ],
-                    ),
-                  ),
-                  
-                ],
-              );
+                }
 
-            }
+              }
+              
             
             else if(snapshot.hasError)
             {

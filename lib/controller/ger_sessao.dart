@@ -12,7 +12,6 @@ class GerSessao extends StatefulWidget
 
   @override
   State<GerSessao> createState() => _GerSessaoState();
-  //State<StatefulWidget> createState() => _GerSessaoState();
   
 }
 

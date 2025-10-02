@@ -59,10 +59,6 @@ class RepoUsuario
 
   Future<void> apagarSessao(int c) async => servicoApiUsuarioPrivado.apagarSessao(c);
 
-  Future<void> apagarSessaoAtual() async => servicoApiUsuarioPrivado.apagarSessaoAtual();
-
-  //Future<Sessao> getSessao() async => servicoApiUsuarioPrivado.acessarSessao();
-
 
 
 }

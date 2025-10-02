@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-//import '../model/sessao.dart';
-//import '../model/sessao.dart';
-//import '../model/usuario.dart';
+
 import '../model/usuario.dart';
 import 'alterar_usuario.dart';
-//import 'api_service/api_acesso.dart';
-//import 'api_service/api_principal.dart';
-//import 'autenticacao.dart';
-//import 'ger_token_sessao.dart';
-//import 'mostrar_seguidores.dart';
-//import 'repository/repo_usuario.dart';
+
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
 import 'ger_posts_usuario.dart';
@@ -23,7 +16,7 @@ class ContPerfil extends StatefulWidget
 
   @override
   State<ContPerfil> createState() => _ContPerfilState();
-  //State<StatefulWidget> createState() => _ContPerfilState();
+  
 
 }
 
@@ -75,7 +68,6 @@ class _ContPerfilState extends State<ContPerfil>
   {
     return FutureBuilder
     (
-      //future: _perfilUsuario, 
       future: _usuario, 
       builder: (context, snapshot)
       {
@@ -98,7 +90,6 @@ class _ContPerfilState extends State<ContPerfil>
                       (
                         title: Text(snapshot.data!.login),
                         subtitle: Text(snapshot.data!.name),
-                        //trailing: Text(snapshot.data!.id.toString()),
                         leading: Icon(Icons.person),
 
                       ),
