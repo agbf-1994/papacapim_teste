@@ -62,9 +62,9 @@ class _MostrarSeguidoresState extends State<MostrarSeguidores>
           if(snapshot.data!.isEmpty)
           {
             quantSeguidores = 0;
-             return ElevatedButton
+             return IconButton
             (
-              child: 
+              icon: 
               Row
               (
                 children: 
@@ -85,9 +85,9 @@ class _MostrarSeguidoresState extends State<MostrarSeguidores>
           else
           {
             quantSeguidores = snapshot.data!.length;
-            return ElevatedButton
+            return IconButton
             (
-              child: 
+              icon: 
               Row
               (
                 children: 
@@ -109,9 +109,9 @@ class _MostrarSeguidoresState extends State<MostrarSeguidores>
         }
         else if(snapshot.hasError)
         {
-          return ElevatedButton
+          return IconButton
           (
-            child: 
+            icon: 
             Row
               (
                 children: 

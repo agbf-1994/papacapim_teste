@@ -61,9 +61,9 @@ class _MostrarCurtidasState extends State<MostrarCurtidas>
           if(snapshot.data!.isEmpty)
           {
             quantCurtidas = 0;
-             return ElevatedButton
+             return IconButton
             (
-              child: 
+              icon: 
               Row
               (
                 children: 
@@ -84,9 +84,9 @@ class _MostrarCurtidasState extends State<MostrarCurtidas>
           else
           {
             quantCurtidas = snapshot.data!.length;
-            return ElevatedButton
+            return IconButton
             (
-              child: 
+              icon: 
               Row
               (
                 children: 
@@ -108,13 +108,13 @@ class _MostrarCurtidasState extends State<MostrarCurtidas>
         }
         else if(snapshot.hasError)
         {
-          return ElevatedButton
+          return IconButton
           (
-            child: Row
+            icon: Row
               (
                 children: 
                 [
-                  Icon(Icons.group),
+                  Icon(Icons.thumb_up_alt_sharp),
                   Icon(Icons.error),
                 ],
               ),
@@ -127,9 +127,16 @@ class _MostrarCurtidasState extends State<MostrarCurtidas>
         }
         else
         {
-          return ElevatedButton
+          return IconButton
           (
-            child: const Icon(Icons.stop),
+            icon: Row
+              (
+                children: 
+                [
+                  Icon(Icons.thumb_up_alt_sharp),
+                  Icon(Icons.stop),
+                ],
+              ),
             
             onPressed: () 
             {

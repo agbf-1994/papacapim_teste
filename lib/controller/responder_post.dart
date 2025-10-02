@@ -56,9 +56,9 @@ class _ResponderPostState extends State<ResponderPost> {
   
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton
+    return IconButton
       (
-        child: const Icon(Icons.add_comment),
+        icon: const Icon(Icons.add_comment),
         
         onPressed: () 
         {
