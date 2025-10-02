@@ -24,14 +24,3 @@ Future<String?> getUsername() async
   return prefsUsr.getString("user_name");
 }
 
-Future<void> salvarLogin(bool lg) async
-{
-  final prefsLogin = await SharedPreferences.getInstance();
-  await prefsLogin.setBool('loginState', true);
-}
-
-Future<bool?> getLogin() async
-{
-  final prefsLogin = await SharedPreferences.getInstance();
-  return prefsLogin.getBool('loginState') ?? false;
-}

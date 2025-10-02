@@ -29,8 +29,6 @@ class _AutenticacaoState extends State<Autenticacao>
   final RepoUsuario _repositorioUsuarios = RepoUsuario(ApiPrincipal(), ApiAcesso());
   
   late Sessao _usuarioLogado;
-  late String? token;
-
   
   @override
   void initState()
@@ -44,66 +42,66 @@ class _AutenticacaoState extends State<Autenticacao>
 
     if((senhaLoginIdeal(s)) && (!loginUserVazio(u)))
     {
+
       SessaoAtivado novaSessao = SessaoAtivado(login: u, password: s);
-      _usuarioLogado = await _repositorioUsuarios.iniciarSessao(novaSessao);
-      salvarToken(_usuarioLogado.token);
-      salvarUsername(_usuarioLogado.usrLogin);
 
-      if(mounted)
+      try
       {
-        
-        setState
-        (
-          () 
-          {
-            Navigator.pushReplacement
-            (
-              context,
-              MaterialPageRoute
-              (
-                //Vai para a tela principal de usuário 
-                builder: (context) => FeedUsuario()
-                //builder: (context) => TelaPrincipal(),
-              )
-            );
 
+        
+        _usuarioLogado = await _repositorioUsuarios.iniciarSessao(novaSessao);
+        salvarToken(_usuarioLogado.token);
+        salvarUsername(_usuarioLogado.usrLogin);
+
+        if(mounted)
+        {
           
-          }
-        );
+          setState
+          (
+            () 
+            {
+              Navigator.pushReplacement
+              (
+                context,
+                MaterialPageRoute
+                (
+                  //Vai para a tela principal de usuário 
+                  builder: (context) => FeedUsuario()
+                  
+                )
+              );
+
+            
+            }
+          );
+        }
+
+      }
+      catch(e)
+      {
+        mostrarAlerta(context, e.toString());
+
       }
       
-
-      
-
       
       
-      
-      
-
     }
     else if(!senhaLoginIdeal(s))
     {
-      mostrarAlerta(context, "A senha não se encaixa nos padrões de seguranca.\nTente novamente.");
+      mostrarAlerta(context, "A senha precisa ter no mínimo 10 dígitos.\nTente novamente.");
     }
-    
     
   }
   @override
   Widget build(BuildContext context) 
   {
-    //redirecionar();
 
     return MaterialApp
     (
       home: Scaffold
       (
         body: Login(logar: _logar,)
-        /*
-        body: Center
-        (
-          child: const CircularProgressIndicator(),
-        )
-        */
+        
         
       )
     );

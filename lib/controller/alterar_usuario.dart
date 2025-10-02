@@ -1,10 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-//import '../model/usuario.dart';
-//import '../view/tela_alteracao_usuario.dart';
-//import '../view/tela_sessao.dart';
-//import '../model/usuario.dart';
+
 import '../model/usuario.dart';
 import '../view/tela_alteracao_usuario.dart';
 import '../view/tela_redir_login.dart';
@@ -20,7 +17,7 @@ class AlterarUsuario extends StatefulWidget
   const AlterarUsuario({super.key});
 
   @override
-  //State<AlterarUsuario> createState() => _AlterarUsuarioState();
+  
   State<StatefulWidget> createState() => _AlterarUsuarioState();
 
 }

@@ -5,12 +5,12 @@ import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
 import 'repository/repo_usuario.dart';
 
+
 class GerCurtidores extends StatefulWidget 
 {
   const GerCurtidores({super.key, required this.meusCurtidores, });
 
   @override
-  //State<StatefulWidget> createState() => _GerRespostasState();
   State<GerCurtidores> createState() => _GerCurtidoresState();
   final int meusCurtidores;
 }
@@ -20,12 +20,16 @@ class _GerCurtidoresState extends State<GerCurtidores>
   final RepoUsuario _repositorioCurtidores = RepoUsuario(ApiPrincipal(), ApiAcesso());
   late Future<List<Curtida>> _curtidores;
 
+
   @override
   void initState()
   {
     super.initState();
     _curtidores = _repositorioCurtidores.listarCurtidas(widget.meusCurtidores);
   }
+
+
+
   @override
   Widget build(BuildContext context) 
   {
@@ -43,12 +47,6 @@ class _GerCurtidoresState extends State<GerCurtidores>
             (
               content: Text('Não há curtidas!'),
             );
-            /*
-            return Center
-            (
-              child: const Text('Não há respostas'),
-            );
-            */
           }
           else
           {

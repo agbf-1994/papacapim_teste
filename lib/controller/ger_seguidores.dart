@@ -11,7 +11,7 @@ class GerSeguidores extends StatefulWidget
   const GerSeguidores({super.key, required this.meusSeguidores, });
 
   @override
-  //State<StatefulWidget> createState() => _GerRespostasState();
+ 
   State<GerSeguidores> createState() => _GerSeguidoresState();
   final String meusSeguidores;
 }
@@ -44,12 +44,7 @@ class _GerSeguidoresState extends State<GerSeguidores>
             (
               content: Text('Não há seguidores!'),
             );
-            /*
-            return Center
-            (
-              child: const Text('Não há respostas'),
-            );
-            */
+            
           }
           else
           {

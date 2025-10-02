@@ -4,9 +4,13 @@ import 'package:papacapim_v02/controller/mostrar_curtidas.dart';
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
 import 'curtir_post.dart';
+import 'excluir_curtida.dart';
+import 'excluir_post.dart';
+import 'mostrar_respostas_post.dart';
 import 'repository/repo_usuario.dart';
 
 import '../model/post.dart';
+import 'responder_post.dart';
 
 
 class GerRespostas extends StatefulWidget 
@@ -14,7 +18,6 @@ class GerRespostas extends StatefulWidget
   const GerRespostas({super.key, required this.codPostResposta, });
 
   @override
-  //State<StatefulWidget> createState() => _GerRespostasState();
   State<GerRespostas> createState() => _GerRespostasState();
   final int codPostResposta;
 }
@@ -47,12 +50,7 @@ class _GerRespostasState extends State<GerRespostas>
             (
               content: Text('Não há respostas!'),
             );
-            /*
-            return Center
-            (
-              child: const Text('Não há respostas'),
-            );
-            */
+            
           }
           else
           {
@@ -84,7 +82,11 @@ class _GerRespostasState extends State<GerRespostas>
                             
                             
                             Curtir(curtido: p.id,),
-                            MostrarCurtidas(indiceCurtidaPost: p.id)
+                            ExcluirCurtida(curtidaAExcluir: p.id,),
+                            MostrarCurtidas(indiceCurtidaPost: p.id),
+                            ResponderPost(indiceRespostaPost: p.id,),
+                            MostrarRespostasPost(indiceRespostaPost: p.id,),
+                            ExcluirPost(postAExcluir: p.id,),
                           ],
                         ),
                         SizedBox(height: 10.0,),
@@ -119,5 +121,6 @@ class _GerRespostasState extends State<GerRespostas>
       }
     );
   }
+
   
 }

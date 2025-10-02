@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:papacapim_v02/controller/mostrar_alerta.dart';
 
 import '../model/sessao.dart';
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
 import 'autenticacao.dart';
-import 'ger_token_sessao.dart';
 import 'repository/repo_usuario.dart';
 
 class Sair extends StatefulWidget
@@ -30,24 +30,29 @@ class _SairState extends State<Sair>
 
   Future<void> apagar(int a)
   async {
-    await _repositorioSessao.apagarSessao(a);
-    if(mounted)
+    try
     {
-      setState
-      (
-        ()
-        {
-            Navigator.pushReplacement
-            (
-              context,
-              MaterialPageRoute(
-              builder: (builder) => Autenticacao(),
-            )
-            );
-          
-        }
-      );
+      await _repositorioSessao.apagarSessao(a);
+      
+        setState
+        (
+          ()
+          {
+              Navigator.pushReplacement
+              (
+                context,
+                MaterialPageRoute(
+                builder: (builder) => Autenticacao(),
+              )
+              );
+            
+          }
+        );
 
+    }
+    catch(e)
+    {
+      mostrarAlerta(context, e.toString());
     }
     
   }

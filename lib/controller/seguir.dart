@@ -31,7 +31,6 @@ class _SeguirState extends State<Seguir>
         (
           () 
           {
-            //print('Usuário seguido!');
         
           }
         );

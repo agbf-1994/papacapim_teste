@@ -19,7 +19,6 @@ class ExcluirPost extends StatefulWidget
 class _ExcluirPostState extends State<ExcluirPost>
 {
   final RepoUsuario _repositorioPosts = RepoUsuario(ApiPrincipal(), ApiAcesso());
-  //late Future<Post> _post;
 
   Future<void> _excluirPost(int pe)
   async {

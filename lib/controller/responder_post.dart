@@ -12,7 +12,6 @@ class ResponderPost extends StatefulWidget {
 
   @override
   State<ResponderPost> createState() => _ResponderPostState();
-  //State<StatefulWidget> createState() => _ResponderPostState();
   final int indiceRespostaPost;
 }
 
@@ -25,7 +24,6 @@ class _ResponderPostState extends State<ResponderPost> {
   void _responderPost(String m, int c) async 
   {
     c = widget.indiceRespostaPost;
-    //print('Mensagem: $m, ID: $c');
     
     try 
     {
@@ -70,7 +68,6 @@ class _ResponderPostState extends State<ResponderPost> {
             MaterialPageRoute
             (
               builder: (context) => ResponderPostagem(responderPost: _responderPost,)
-              //builder: (context) => NovoContato(adicionaContato: _adicionaContato) 
             )
           );
         }
