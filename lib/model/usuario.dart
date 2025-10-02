@@ -15,26 +15,7 @@ class Usuario
 
   );
 
-  /*
-  Usuario atualizar
-  (
-    {
-      String? login, 
-      String? name, 
-      String? password, 
-      String? passwordConfirmation,
-    }
-  )
-  {
-    return Usuario
-    (
-      login: login ?? this.login, 
-      name: name ?? this.name, 
-      password: password ?? this.password, 
-      passwordConfirmation: passwordConfirmation ?? this.passwordConfirmation,
-    );
-  }
-  */
+  
   
   @override
   Usuario.atualizar
