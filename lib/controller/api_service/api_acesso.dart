@@ -339,7 +339,7 @@ class ApiAcesso
 
   }
 
-  Future<void> apagarSeguidor(/*int st,*/ String sn) async
+  Future<void> apagarSeguidor(String sn) async
   {
     final token = await getToken();
     if(token!=null)
