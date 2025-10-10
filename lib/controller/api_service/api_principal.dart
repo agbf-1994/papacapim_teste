@@ -6,6 +6,8 @@ import '../../model/usuario.dart';
 
 class ApiPrincipal 
 {
+  final String _site = "https://api.papacapim.just.pro.br";
+
   Future<List<UsuarioConta>> buscarUsuarios() async
   {
     final http.Client cliente = http.Client();
@@ -14,7 +16,7 @@ class ApiPrincipal
     {
       http.Response? resp = await cliente.get
       (
-        Uri.parse('https://api.papacapim.just.pro.br/users'),
+        Uri.parse('$_site/users'),
       );
       List<dynamic> data = json.decode(resp.body);
 
@@ -53,7 +55,7 @@ class ApiPrincipal
     {
       http.Response? resp = await cliente.post
       (
-        Uri.parse('https://api.papacapim.just.pro.br/users'),
+        Uri.parse('$_site/users'),
         headers: {'Content-Type': 'application/json'},
         
         body: body,
@@ -93,7 +95,7 @@ class ApiPrincipal
     {
       http.Response? resp = await cliente.post
       (
-        Uri.parse('https://api.papacapim.just.pro.br/sessions'),
+        Uri.parse('$_site/sessions'),
         headers: {'Content-Type': 'application/json'},
         body: body  
       );
@@ -134,7 +136,7 @@ class ApiPrincipal
       {
         http.Response? resp = await cliente.get
         (
-          Uri.parse('https://api.papacapim.just.pro.br/sessions'),
+          Uri.parse('$_site/sessions'),
         );
         List<dynamic> data = json.decode(resp.body);
 
