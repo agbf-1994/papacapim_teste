@@ -9,6 +9,8 @@ import '../ger_token_sessao.dart';
 
 class ApiAcesso 
 {
+  final String _site = "https://api.papacapim.just.pro.br";
+
   Future<List<UsuarioConta>> listarUsuarios(int? p, String? s) async
   {
 
@@ -19,19 +21,19 @@ class ApiAcesso
       String url = "";
       if((p==null) && (s==null))
       {
-        url = 'https://api.papacapim.just.pro.br/users';
+        url = '$_site/users';
       }
       else if(p==null)
       {
-        url = 'https://api.papacapim.just.pro.br/users?search=$s';
+        url = '$_site/users?search=$s';
       }
       else if(s==null)
       {
-        url = 'https://api.papacapim.just.pro.br/users?page=$p';
+        url = '$_site/users?page=$p';
       }
       else
       {
-        url = 'https://api.papacapim.just.pro.br/users?page=$p&search=$s';
+        url = '$_site/users?page=$p&search=$s';
       }
 
       final http.Client cliente = http.Client();
@@ -92,7 +94,7 @@ class ApiAcesso
       {
         http.Response? resp = await cliente.get
         (
-          Uri.parse('https://api.papacapim.just.pro.br/users?search=$usr'),
+          Uri.parse('$_site/users?search=$usr'),
           headers: {'X-Session-Token': token, 'Content-Type': 'application/json',}
           
         );
@@ -147,7 +149,7 @@ class ApiAcesso
       {
         http.Response? resp = await cliente.get
         (
-          Uri.parse('https://api.papacapim.just.pro.br/users/$us/'),
+          Uri.parse('$_site/users/$us/'),
           headers: {'X-Session-Token': token, 'Content-Type': 'application/json',}
           
         );
@@ -200,7 +202,7 @@ class ApiAcesso
       {
         http.Response? resp = await cliente.patch
         (
-          Uri.parse('https://api.papacapim.just.pro.br/users/1'),
+          Uri.parse('$_site/users/1'),
           headers: {'X-Session-Token': token, 'Content-Type': 'application/json',},
           body: usuario,
           
@@ -249,7 +251,7 @@ class ApiAcesso
         {
           http.Response? resp = await cliente.post
           (
-            Uri.parse('https://api.papacapim.just.pro.br/users/$sg/followers'),
+            Uri.parse('$_site/users/$sg/followers'),
             headers: {'X-Session-Token': token, 'Content-Type': 'application/json'},
           
           );
@@ -298,7 +300,7 @@ class ApiAcesso
         {
           http.Response? resp = await cliente.get
           (
-            Uri.parse('https://api.papacapim.just.pro.br/users/$sg/followers'),
+            Uri.parse('$_site/users/$sg/followers'),
             headers: {'X-Session-Token': token, 'Content-Type': 'application/json'},
           
           );
@@ -351,7 +353,7 @@ class ApiAcesso
           http.Response? resp = await cliente.delete
           (
             Uri.parse
-            ('https://api.papacapim.just.pro.br/users/$sn/followers/1'),
+            ('$_site/users/$sn/followers/1'),
             headers: 
             {
               'X-Session-Token': token,
@@ -400,35 +402,35 @@ class ApiAcesso
       String url = "";
       if((s==null) && (p==null) && (f==null))
       {
-        url = 'https://api.papacapim.just.pro.br/posts';
+        url = '$_site/posts';
       }
       else if((s==null) && (p==null))
       {
-        url = 'https://api.papacapim.just.pro.br/posts?feed=$f';
+        url = '$_site/posts?feed=$f';
       }
       else if((s==null) && (f==null))
       {
-        url = 'https://api.papacapim.just.pro.br/posts?page=$p';
+        url = '$_site/posts?page=$p';
       }
       else if((p==null) && (f==null))
       {
-        url = 'https://api.papacapim.just.pro.br/posts?search=$s';
+        url = '$_site/posts?search=$s';
       }
       else if(s==null)
       {
-        url = 'https://api.papacapim.just.pro.br/posts?page=$p&feed=$f';
+        url = '$_site/posts?page=$p&feed=$f';
       }
       else if(p==null)
       {
-        url = 'https://api.papacapim.just.pro.br/posts?search=$s&feed=$f';
+        url = '$_site/posts?search=$s&feed=$f';
       }
       else if(f==null)
       {
-        url = 'https://api.papacapim.just.pro.br/posts?search=$s&page=$p';
+        url = '$_site/posts?search=$s&page=$p';
       }
       else  
       {
-        url = 'https://api.papacapim.just.pro.br/posts?search=$s&page=$p&feed=$f';
+        url = '$_site/posts?search=$s&page=$p&feed=$f';
       }
       final http.Client cliente = http.Client();
       try 
@@ -488,11 +490,11 @@ class ApiAcesso
         String url = "";
         if(p==null)
         {
-          url = 'https://api.papacapim.just.pro.br/users/$u/posts';
+          url = '$_site/users/$u/posts';
         }
         else
         {
-          url = 'https://api.papacapim.just.pro.br/users/$u/posts?page=$p';
+          url = '$_site/users/$u/posts?page=$p';
         }
         http.Response? resp = await cliente.get
         (
@@ -549,11 +551,11 @@ class ApiAcesso
         String? url = "";
         if(p==null)
         {
-          url = 'https://api.papacapim.just.pro.br/users/$us/posts';
+          url = '$_site/users/$us/posts';
         }
         else 
         {
-          url = 'https://api.papacapim.just.pro.br/users/$us/posts?page=$p';
+          url = '$_site/users/$us/posts?page=$p';
         }
         http.Response? resp = await cliente.get
         (
@@ -609,7 +611,7 @@ class ApiAcesso
       try 
       {
         http.Response? resp = await cliente.post(
-          Uri.parse('https://api.papacapim.just.pro.br/posts'),
+          Uri.parse('$_site/posts'),
           headers: 
           {
             'X-Session-Token': token,
@@ -658,7 +660,7 @@ class ApiAcesso
       try 
       {
         http.Response? resp = await cliente.post(
-          Uri.parse('https://api.papacapim.just.pro.br/posts/$cp/replies'),
+          Uri.parse('$_site/posts/$cp/replies'),
           headers: 
           {
             'X-Session-Token': token,
@@ -711,12 +713,12 @@ class ApiAcesso
         String url = "";
         if(p==null)
         {
-          url = 'https://api.papacapim.just.pro.br/posts/$cp/replies';
+          url = '$_site/posts/$cp/replies';
 
         }
         else
         {
-          url = 'https://api.papacapim.just.pro.br/posts/$cp/replies?page=$p';
+          url = '$_site/posts/$cp/replies?page=$p';
         }
         http.Response? resp = await cliente.get(
           Uri.parse(url),
@@ -770,7 +772,7 @@ class ApiAcesso
         {
           http.Response? resp = await cliente.delete
           (
-            Uri.parse('https://api.papacapim.just.pro.br/posts/$ps'),
+            Uri.parse('$_site/posts/$ps'),
             headers: {
               'X-Session-Token': token,
               'Content-Type': 'application/json',
@@ -819,7 +821,7 @@ class ApiAcesso
       try 
       {
         http.Response? resp = await cliente.post(
-          Uri.parse('https://api.papacapim.just.pro.br/posts/$pi/likes'),
+          Uri.parse('$_site/posts/$pi/likes'),
           headers: 
           {
             'X-Session-Token': token,
@@ -867,7 +869,7 @@ class ApiAcesso
       try 
       {
         http.Response? resp = await cliente.get(
-          Uri.parse('https://api.papacapim.just.pro.br/posts/$pi/likes'),
+          Uri.parse('$_site/posts/$pi/likes'),
           headers: 
           {
             'X-Session-Token': token,
@@ -918,7 +920,7 @@ class ApiAcesso
         {
           http.Response? resp = await cliente.delete
           (
-            Uri.parse('https://api.papacapim.just.pro.br/posts/$ps/likes/1'),
+            Uri.parse('$_site/posts/$ps/likes/1'),
             headers: {
               'X-Session-Token': token,
               'Content-Type': 'application/json',
@@ -965,7 +967,7 @@ class ApiAcesso
       final http.Client cliente = http.Client();
       try
       {
-        final url = Uri.parse('https://api.papacapim.just.pro.br/sessions');
+        final url = Uri.parse('$_site/sessions');
         final resp = await cliente.get
         (
           url,
@@ -1018,7 +1020,7 @@ class ApiAcesso
         {
           http.Response? resp = await cliente.delete
           (
-            Uri.parse('https://api.papacapim.just.pro.br/sessions/$st'),
+            Uri.parse('$_site/sessions/$st'),
             headers: {
               'X-Session-Token': token,
               'Content-Type': 'application/json',
