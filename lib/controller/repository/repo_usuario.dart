@@ -17,6 +17,8 @@ class RepoUsuario
 
   Future<UsuarioConta> getUsuario() async => servicoApiUsuarioPrivado.getUsuario();
 
+  Future<UsuarioConta> getOutroUsuario(String us) async => servicoApiUsuarioPrivado.getOutroUsuario(us);
+
   Future<UsuarioConta> cadastrarUsuario(Usuario usr) async => servicoApiUsuario.novoUsuario(usr);
 
   Future<List<UsuarioConta>> buscarUsuario(String nome) async => servicoApiUsuarioPrivado.buscarUsuario(nome);
@@ -28,7 +30,7 @@ class RepoUsuario
 
   Future<List<Seguidor>> listarSeguidores(String sg) async => servicoApiUsuarioPrivado.listarSeguidores(sg);
 
-  Future<void> apagarSeguidor(int id, String sg) async => servicoApiUsuarioPrivado.apagarSeguidor(id, sg);
+  Future<void> apagarSeguidor(/*int id,*/ String sg) async => servicoApiUsuarioPrivado.apagarSeguidor(/*id,*/ sg);
 
   //Respositórios para Postagens
   Future<List<Post>> getPosts(String? s, int? p, int? f) async => servicoApiUsuarioPrivado.listarPosts(s, p, f);
