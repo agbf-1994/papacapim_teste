@@ -186,6 +186,55 @@ class ApiAcesso
       throw Exception("Erro de autenticação!");
     }
   }
+
+  Future<UsuarioConta> getOutroUsuario(String us) async
+  {
+    final token = await getToken();
+    if(token!=null)
+    {
+
+      final http.Client cliente = http.Client();
+      try
+      {
+        http.Response? resp = await cliente.get
+        (
+          Uri.parse('$_site/users/$us/'),
+          headers: {'X-Session-Token': token, 'Content-Type': 'application/json',}
+          
+        );
+
+        
+        if(resp.statusCode>=100 && resp.statusCode<400)
+        {
+          if(resp.statusCode==200)
+          {
+            return UsuarioConta.fromJson(json.decode(resp.body));
+          }
+          else
+          {
+            return Future.error(resp.body);
+          }
+          
+        }
+        else
+        {
+          throw Exception(resp.reasonPhrase);
+        }
+        
+
+      }
+      on Exception catch(_)
+      {
+        rethrow;
+
+      }
+
+    }
+    else
+    {
+      throw Exception("Erro de autenticação!");
+    }
+  }
   
 
   Future<UsuarioConta> alterarUsuario(Usuario n) async
