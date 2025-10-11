@@ -78,7 +78,7 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: 
                 [
-                  ElevatedButton
+                  TextButton
                   (
                     child: const Text("Feed completo"),
                     
@@ -88,13 +88,14 @@ class _OrganizadorFeedState extends State<OrganizadorFeed>
                       
                     }
                   ),
-                  ElevatedButton
+                  TextButton
                   (
                     child: const Text("Seus amigos"),
-                    
                     onPressed: () 
                     {
                       _organizar(null, null, 1);
+                      
+                      
                     }
                   ),
                   
