@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'controller/autenticacao.dart';
+import 'controller/inicializacao.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,7 +11,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Autenticacao(),
+      home: Inicializacao(),
     );
   }
 }

@@ -28,14 +28,9 @@ class _LoginState extends State<Login>
 
   void logar(String? u, String? s){
 
-    setState
-    (
-      () 
-      {
-        widget.logar(u!, s!);
-        
-      }
-    );
+    widget.logar(u!, s!);
+
+    
 
   }
 

@@ -1,7 +1,6 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:papacapim_v02/controller/mostrar_alerta.dart';
 
 
 import '../model/sessao.dart';
@@ -10,6 +9,7 @@ import '../view/tela_login.dart';
 import 'api_service/api_acesso.dart';
 import 'api_service/api_principal.dart';
 import 'ger_token_sessao.dart';
+import 'mostrar_alerta.dart';
 import 'repository/repo_usuario.dart';
 import 'verificar_dados.dart';
 
@@ -30,58 +30,52 @@ class _AutenticacaoState extends State<Autenticacao>
   
   late Sessao _usuarioLogado;
   
-  @override
-  void initState()
-  {
-    super.initState();
-
-  }
 
   void _logar(String u, String s) async
   {
 
     if((senhaLoginIdeal(s)) && (!loginUserVazio(u)))
     {
-
       SessaoAtivado novaSessao = SessaoAtivado(login: u, password: s);
 
       try
       {
-
-        
+ 
         _usuarioLogado = await _repositorioUsuarios.iniciarSessao(novaSessao);
         salvarToken(_usuarioLogado.token);
         salvarUsername(_usuarioLogado.usrLogin);
 
+        
         if(mounted)
         {
-          
           setState
           (
             () 
             {
-              Navigator.pushReplacement
+              Navigator.pushAndRemoveUntil
               (
                 context,
                 MaterialPageRoute
                 (
                   //Vai para a tela principal de usuário 
-                  builder: (context) => FeedUsuario()
+                  builder: (_) => FeedUsuario(),
                   
-                )
+                ),
+                (route) => false,
               );
-
             
             }
           );
+
         }
 
       }
       catch(e)
       {
-        mostrarAlerta(context, e.toString());
+        if(mounted) mostrarAlerta(context, e.toString());
 
       }
+      
       
       
       
@@ -100,9 +94,8 @@ class _AutenticacaoState extends State<Autenticacao>
     (
       home: Scaffold
       (
+
         body: Login(logar: _logar,)
-        
-        
       )
     );
   }

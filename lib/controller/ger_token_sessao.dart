@@ -24,3 +24,7 @@ Future<String?> getUsername() async
   return prefsUsr.getString("user_name");
 }
 
+Future<void> limparSharedPreferences() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.clear(); // Clear all data from SharedPreferences
+}
